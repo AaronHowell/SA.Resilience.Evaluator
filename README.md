@@ -29,10 +29,16 @@ Resilience evaluation component:
 | attack_set_detail_table | List    | Detailed list of the system's potential attack sets          |
 
 parameter table listing all weights and defaults:
-| Parameter Name          | Symbol          | Description                                                  | Default Value | Search Range (if applicable) | Source / Notes                          |
-| ----------------------- | --------------- | ------------------------------------------------------------ | ------------- | ----------------------------- | --------------------------------------- |
-| Reconstruction loss weight | $\lambda_{rec}$ | Weight for the reconstruction term in the loss function       | 1.0           | [0.1, 10]                     |         |
-| KL divergence weight    | $\beta$         | Controls regularization strength in the VAE                   | 0.5           | [0.01, 1.0]                   |          |
-| Learning rate           | $\eta$          | Optimizer learning rate                                       | $10^{-4}$     | —                             |      |
+| Parameter name               | Symbol       | Description                          | Default value                          |Where|
+|-------------------------------|--------------|--------------------------------------|----------------------------------------|---|
+| Probability of attack         | Probability(Attack) | The probability of attack        | Medium: 0.5<br>High: 0.8<br>Low: 0.2<br>Uncertainty: user’s input |attack_surface_info.py|
+| weights (cyclomatic complexity) | wc          | The weight of cyclomatic complexity  |  temp = c[2] + child[2]                             |Component_recovery.py|
+| weights (entries)             | wp           | The weight of entries                | temp = c[2] + child[2]                                  |Component_recovery.py|
+| weights (external library dependencies) | wp | The weight of external library dependencies |  temp = c[2] + child[2]                         |Component_recovery.py|
+| weights (control dependency)  | wcontrol     | The weight of control dependency     | degree_dict[func] += parent[2]                                   |Component_recovery.py|
+| weights (data dependency)     | wdata        | The weight of data dependency        | degree_dict[func] += parent[2]                                     |Component_recovery.py|
+| weights (API dependency)      | wapi         | The weight of API dependency         | degree_dict[func] += parent[2]                                     |Component_recovery.py|
+| weights (interface dependencies) | α          | The weight of interface dependencies |weight = int(temp_edge["count"])                                  |Component_recovery.py|
+| weights (direct dependencies) | β            | The weight of direct dependencies    |weight = int(temp_edge["count"])                                    |Component_recovery.py|
 
-
+ the UML/ADG inputs used in figures so others can reproduce the plots：\back_end\test1\wsd_uml_folder
